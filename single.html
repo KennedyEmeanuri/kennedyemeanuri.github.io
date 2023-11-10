@@ -1,146 +1,51 @@
-<!DOCTYPE HTML>
-<!--
-	Future Imperfect by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Single - Future Imperfect by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="single is-preload">
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhXoUukddAOb4wOBMi3qX7KIhjWV4mIHGJS7TY9VPmkUt0mRzZuUgn6FD4Nj3iggaG4p9rNtdy6wRAO7iCoyLY9Jgz2A2jXbtbeyEYLRw-rLLVWxa3TUNLUIoBFNupMVcoKmT898ZD6aNykSWECRYk6x1OmOmiRAc41qAw1XXs3lCklfVMJJWjAKb_0GP0/s2280/20231027_075837.jpg" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="1280" data-original-width="2280" height="360" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhXoUukddAOb4wOBMi3qX7KIhjWV4mIHGJS7TY9VPmkUt0mRzZuUgn6FD4Nj3iggaG4p9rNtdy6wRAO7iCoyLY9Jgz2A2jXbtbeyEYLRw-rLLVWxa3TUNLUIoBFNupMVcoKmT898ZD6aNykSWECRYk6x1OmOmiRAc41qAw1XXs3lCklfVMJJWjAKb_0GP0/w640-h360/20231027_075837.jpg" width="640" /></a></div><h3 style="text-align: left;"><b><span style="font-family: arial; font-size: x-large;">Introduction:</span></b></h3><p style="text-align: left;"><span style="font-family: arial; font-size: medium;">In this blog post, we will explore the Server Message Block (SMB), which is a network protocol used for sharing files, printers, and various resources on a local network or the internet. We will be targeting the SMB service running on the Kioptrix Level 1 VM using Kali Linux, an open-source operating system specifically designed for penetration testing and ethical hacking.</span></p><p style="text-align: left;"><span style="font-family: arial; font-size: medium;">The Kioptrix VM is a purposely vulnerable virtual machine available from Vulnhub. It is an excellent tool for both beginners and experienced cybersecurity enthusiasts to practice penetration testing and enhance their cybersecurity skills.</span></p><h3 style="text-align: left;"><b style="font-family: arial; font-size: xx-large;"><span style="color: #fcff01;">⚠</span></b><span style="font-size: x-large;"><span style="font-family: arial;"><b>Disclaimer</b></span></span><b style="font-family: arial; font-size: xx-large;"><span style="color: #fcff01;">⚠</span></b></h3><h4 style="text-align: left;"><span style="font-family: arial; font-size: medium;"><span style="font-weight: normal;">This blog post is intended for educational and informational purposes only. The techniques and methods discussed here should only be used in ethical and legal contexts, such as cybersecurity training and penetration testing. Any misuse of the information provided in this post is strictly discouraged, and the author and website are not responsible for any unlawful activities undertaken by readers.</span></span></h4><h3 style="text-align: left;"><b><span style="font-family: arial; font-size: x-large;">Objective</span></b></h3><p><span style="font-family: arial; font-size: medium;">The sole aim of this assessment is to:</span></p><p></p><p>
+  
+  
+  
 
-		<!-- Wrapper -->
-			<div id="wrapper">
 
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="index.html">KENNEDY EMEANURI</a></h1>
-						<nav class="links">
-							<ul>
-								<li><a href="#">HOME</a></li>
-								<li><a href="#">ABOUT ME</a></li>
-								<li><a href="#">GET IN TOUCH</a></li>
-								<li><a href="#">Tempus</a></li>
-								<li><a href="#">Adipiscing</a></li>
-							</ul>
-						</nav>
-						<nav class="main">
-							<ul>
-								<li class="search">
-									<a class="fa-search" href="#search">Search</a>
-									<form id="search" method="get" action="#">
-										<input type="text" name="query" placeholder="Search" />
-									</form>
-								</li>
-								<li class="menu">
-									<a class="fa-bars" href="#menu">Menu</a>
-								</li>
-							</ul>
-						</nav>
-					</header>
+</p><p><strong><span style="font-family: arial; font-size: medium;">Acquire root access to the Kioptrix machine</span></strong></p><h3 style="text-align: left;"><b><span style="font-family: arial; font-size: x-large;">Scope</span></b></h3><p style="text-align: left;"><span style="font-family: arial; font-size: medium;">The scope of this assessment was my internal network range and the Kioptrix VM situated within my internal network&nbsp;</span></p><h3 style="text-align: left;"><b><span style="font-family: arial; font-size: x-large;">Planning</span></b></h3><p><span style="font-family: arial; font-size: medium;">My Kali Linux (also situated within my internal network) is the machine I'd be using to source out attack vector(s) that can be used to achieve the <a href="Objective_4.html">Objective</a> of this assessment. The <strong>ifconfig</strong> command was issued to determine the IP address of my Kali machine and the result showed that it's IP address = <strong>192.168.43.72</strong></span></p><p></p><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgIpiu57RSp4wGkuDD-KR6xVF-6b20ChBzOrwjEC4W91d6zFUwziOAwN_7_X7iskfG-Ct-5BjnGWcdeJrLw4muj8tWsQLLMgYccr_hfs7BTfZtohUwIQKmqHDzXk_19obsCoC07L3pVkXoOQPVBZxJlcPB5lBMw1-Kb90399j_LdLWKd5O_eyxDnonpsf8/s1108/1.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="595" data-original-width="1108" height="172" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgIpiu57RSp4wGkuDD-KR6xVF-6b20ChBzOrwjEC4W91d6zFUwziOAwN_7_X7iskfG-Ct-5BjnGWcdeJrLw4muj8tWsQLLMgYccr_hfs7BTfZtohUwIQKmqHDzXk_19obsCoC07L3pVkXoOQPVBZxJlcPB5lBMw1-Kb90399j_LdLWKd5O_eyxDnonpsf8/s320/1.png" width="320" /></a></div><div class="separator" style="clear: both; text-align: center;"><br /></div><p style="clear: both; text-align: left;"><span style="font-family: arial; font-size: medium;">A dedicated directory in the Kali home directory (~) will be
+created with the name kioptrix_1 to help organize the
+assessment process.</span></p><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8-I9pOcl6foMccJbUeUynm9CWxH9erA60rwGLv-Hz_vxdg_hYFw5EcJS89wNfTpQp-WJ8vVb_bDwAcJ8jHjZb3UYs6sh7mbubraeuTIDbmK1UHlPS_Apqb4h1sEGDmGHrMjrj-gpl1sBEvfwUgAd2YiyB59U0ec3UWmP0vYhg4zuUp8IBg6a-LQU80XA/s1072/2.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="160" data-original-width="1072" height="48" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8-I9pOcl6foMccJbUeUynm9CWxH9erA60rwGLv-Hz_vxdg_hYFw5EcJS89wNfTpQp-WJ8vVb_bDwAcJ8jHjZb3UYs6sh7mbubraeuTIDbmK1UHlPS_Apqb4h1sEGDmGHrMjrj-gpl1sBEvfwUgAd2YiyB59U0ec3UWmP0vYhg4zuUp8IBg6a-LQU80XA/s320/2.png" width="320" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgN0D33CNUEVamuboTry66DtsSMXNlGBARSsUM43exrnGpFZTejps2937pUPCqPnsdJPUt1-uR-CJRUO3exaiJMVjxYSvimBVQdZGQApL00a_x3R7HAAvAmQMT4gxd6tQ7yFf2rAdxKGEylUlXkIYhjfGaCehJP__LbcXA8ZBD3_a62AUHEVHMLRVakS5I/s1087/3.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="463" data-original-width="1087" height="136" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgN0D33CNUEVamuboTry66DtsSMXNlGBARSsUM43exrnGpFZTejps2937pUPCqPnsdJPUt1-uR-CJRUO3exaiJMVjxYSvimBVQdZGQApL00a_x3R7HAAvAmQMT4gxd6tQ7yFf2rAdxKGEylUlXkIYhjfGaCehJP__LbcXA8ZBD3_a62AUHEVHMLRVakS5I/s320/3.png" width="320" /></a></div><div class="separator" style="clear: both; text-align: center;"><br /></div><h3 style="clear: both; text-align: left;"><b><span style="font-family: arial; font-size: x-large;">Reconnaissance</span></b></h3><p></p><h4 style="text-align: left;"><strong><span style="font-family: arial; font-size: medium;">Scanning the network</span></strong></h4><div class="separator" style="clear: both; text-align: left;">
+  
+  
+  
 
-				<!-- Menu -->
-					<section id="menu">
 
-						<!-- Search -->
-							<section>
-								<form class="search" method="get" action="#">
-									<input type="text" name="query" placeholder="Search" />
-								</form>
-							</section>
+<p><span style="font-family: arial; font-size: medium;">To gather possible information about IP addresses or hosts  running on that network, I utilized the Nmap tool within my Kali VM by issuing the command '<strong><span style="color: #18b2b2;">nmap</span></strong><strong> </strong><strong><span style="color: #18b218;">-T4</span></strong><strong> 192.168.43.0/24</strong>'</span></p><p><span style="font-family: arial; font-size: medium;">Outcome: Discovered an IP address (<strong>192.168.43.67</strong>) which is the IP for the Kioptrix VM that has 6 of its port open.</span></p></div><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9ape0j9exdOQv6KtccitcTmQLBtdfnlSdBNlVEUiNJjs0baWQHczCRPReiNi2eKCIHQxymMwtHTv1uNiGf-NiM97DFb3S-crYv1h67sqMm25xeNrDgT5wLe3sJS8Gedqq7tNVqw0dYJ8mJ28m8UJYYeCGJb83A94uvRU0L8A5vdHTYupMzxT5sjXi4fs/s1144/4.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="478" data-original-width="1144" height="134" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9ape0j9exdOQv6KtccitcTmQLBtdfnlSdBNlVEUiNJjs0baWQHczCRPReiNi2eKCIHQxymMwtHTv1uNiGf-NiM97DFb3S-crYv1h67sqMm25xeNrDgT5wLe3sJS8Gedqq7tNVqw0dYJ8mJ28m8UJYYeCGJb83A94uvRU0L8A5vdHTYupMzxT5sjXi4fs/s320/4.png" width="320" /></a></div><blockquote style="border: none; margin: 0px 0px 0px 40px; padding: 0px;"><blockquote style="border: none; margin: 0px 0px 0px 40px; padding: 0px;"><blockquote style="border: none; margin: 0px 0px 0px 40px; padding: 0px;"><div class="separator" style="clear: both; text-align: center;"><br /></div></blockquote></blockquote></blockquote><h4 style="clear: both; text-align: justify;"><strong style="text-align: left;"><span style="font-family: arial; font-size: medium;">In-depth scanning</span></strong></h4><p style="text-align: left;"><span style="font-family: arial; font-size: medium;">A more intricate nmap command ‘<strong><span style="color: #18b218;">sudo</span></strong><strong> </strong><strong><span style="color: #18b2b2;">nmap</span></strong><strong> </strong><strong><span style="color: #18b218;">-sS</span></strong><strong> </strong><strong><span style="color: #18b218;">-sV</span></strong><strong> </strong><strong><span style="color: #18b218;">-T4</span></strong><strong> </strong><strong><span style="color: #18b218;">-p-</span></strong><strong> </strong><strong><span style="color: #18b218;">-O</span></strong><strong> </strong><strong><span style="color: #18b218;">-oN</span></strong><strong> nmap 192.168.43.67 </strong><strong><span style="color: #18b218;">-Pn</span></strong>’ was issued to give in-depth detail about the open ports of the Kioptrix machine.</span></p><p style="text-align: left;"><span style="font-family: arial; font-size: medium;">Outcome: The result of the nmap scan showed that SMB port is currently open but it's version isn't displayed.</span></p><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitckHI4X9gRAATKD_PtlD4sYcHqvPyNexHu_K4k1MZsawPM5uzINYYxqMIpP3L7wmz-8OV7KuRjD_75yy3tUq66a-kYDHHA9wuCAyEgIWiM4nnk2WOwMuhMO_6xwpBLnIIxcUKGy7KWsldMbvE_2Q2uKiR62gxLv3aRZf-aBDtkcH2o9tgmHBB8VWbXSE/s1143/5.png" style="margin-left: 1em; margin-right: 1em; text-align: center;"><span>&nbsp;&nbsp; </span><img border="0" data-original-height="555" data-original-width="1143" height="155" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitckHI4X9gRAATKD_PtlD4sYcHqvPyNexHu_K4k1MZsawPM5uzINYYxqMIpP3L7wmz-8OV7KuRjD_75yy3tUq66a-kYDHHA9wuCAyEgIWiM4nnk2WOwMuhMO_6xwpBLnIIxcUKGy7KWsldMbvE_2Q2uKiR62gxLv3aRZf-aBDtkcH2o9tgmHBB8VWbXSE/s320/5.png" width="320" /></a></div><p style="text-align: left;"></p><p>
+  
+  
+  
 
-						<!-- Links -->
-							<section>
-								<ul class="links">
-									<li>
-										<a href="#">
-											<h3>Lorem ipsum</h3>
-											<p>Feugiat tempus veroeros dolor</p>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<h3>Dolor sit amet</h3>
-											<p>Sed vitae justo condimentum</p>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<h3>Feugiat veroeros</h3>
-											<p>Phasellus sed ultricies mi congue</p>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<h3>Etiam sed consequat</h3>
-											<p>Porta lectus amet ultricies</p>
-										</a>
-									</li>
-								</ul>
-							</section>
 
-						<!-- Actions -->
-							<section>
-								<ul class="actions stacked">
-									<li><a href="#" class="button large fit">Log In</a></li>
-								</ul>
-							</section>
+</p><h4 style="text-align: left;"><strong><span style="font-family: arial; font-size: medium;">Sourcing for SMB version</span></strong></h4><p style="text-align: left;"><span style="font-family: arial; font-size: medium;">The version of a particular open service must be known to determine the vulnerability associated with it. To achieve this, a module (<strong>smb_version</strong>) in the Metasploit framework was used.</span></p><p style="text-align: left;"><span style="font-family: arial; font-size: medium;">Outcome:  The SMB version was found to be <strong>Samba 2.2.1a</strong></span></p><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhaOj4IdMlnDo3EY0FoFWa31KEnNY8z-Lksxkg_suVbVUld4XcSWCdLiD0WkVaggbBlGSZDK-Lrmrt-jWN0vMnzOsyCuABuRmTgupPv0puRGKp_sXknEGzMEeRYBUaxXKHcmBjuxUMP0V_NwfLGnc9QVkXiCBQSJ9YpA74LhgmN8K9WWf-7WVOHQsrh8QU/s1126/6.png" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img border="0" data-original-height="502" data-original-width="1126" height="143" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhaOj4IdMlnDo3EY0FoFWa31KEnNY8z-Lksxkg_suVbVUld4XcSWCdLiD0WkVaggbBlGSZDK-Lrmrt-jWN0vMnzOsyCuABuRmTgupPv0puRGKp_sXknEGzMEeRYBUaxXKHcmBjuxUMP0V_NwfLGnc9QVkXiCBQSJ9YpA74LhgmN8K9WWf-7WVOHQsrh8QU/s320/6.png" width="320" /></a></div><div class="separator" style="clear: both; text-align: center;"><br /></div><div class="separator" style="clear: both; text-align: justify;">
+  
+  
+  
 
-					</section>
 
-				<!-- Main -->
-					<div id="main">
+<h4><strong><span style="font-family: arial; font-size: medium;">Sourcing for Samba 2.2.1a vulnerability</span></strong></h4><p><span style="font-family: arial; font-size: medium;">Using Google as an Open Source Intelligence (OSINT) tool, a passive recon was done to find out possible loopholes of the Samba 2.2.1a SMB version.</span></p><p><span style="font-family: arial; font-size: medium;">Outcome: It was discovered that a buffer overflow is a common vulnerability found in that version of SMB: and to exploit it, the transopen module found in the Metasploit framework can be used.&nbsp;</span></p><div class="separator" style="clear: both; text-align: center;"><br /></div><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgOFtdTye7rT8IcZJEamf9xsCLYC3XDka1-rIJlfCCKvm6XLbTGDXxy-X_LHGCpio5rYD2ZTfgz8hktgw1ig14efLZGfB13LwBTCHGfDHTBqB2Jt6CFlCrp0az2RFQWsy2Xylrlwai0fpH75IiJx-LjHYvG1nFT-kOrc0Jk1UBc3qi2wy1VF_RrT2CHgZQ/s1144/7.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="600" data-original-width="1144" height="168" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgOFtdTye7rT8IcZJEamf9xsCLYC3XDka1-rIJlfCCKvm6XLbTGDXxy-X_LHGCpio5rYD2ZTfgz8hktgw1ig14efLZGfB13LwBTCHGfDHTBqB2Jt6CFlCrp0az2RFQWsy2Xylrlwai0fpH75IiJx-LjHYvG1nFT-kOrc0Jk1UBc3qi2wy1VF_RrT2CHgZQ/s320/7.png" width="320" /></a></div><div class="separator" style="clear: both; text-align: justify;"><strong><br /></strong></div><h2 style="clear: both; text-align: justify;"><span style="font-family: arial; font-size: x-large;">Penetration</span></h2><h4 style="clear: both; text-align: justify;"><strong><span style="font-family: arial; font-size: medium;">G</span></strong><strong><span style="font-family: arial; font-size: medium;">aining Access</span></strong></h4></div><div class="separator" style="clear: both; text-align: justify;"><p style="text-align: left;"><span style="font-family: arial; font-size: medium;">Since the trans2open module exists in Metasploit framework, a simple search was done in its terminal to determine the directory path of the module.</span></p><p style="text-align: left;"><span style="font-family: arial; font-size: medium;">Outcome: It was discovered within the 'exploit/linux/samba' directory.  The command 'use exploit/linux/samba/trans2open' was used to choose the module.</span></p><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiR7wavYH2xisTTRaLEuEAyMssRxhmC3K0xObG4tOU8PbMp-1rJYXX3eVoAssvB1pSHMno9w2m4hlil7suUyruo41vhI2KMdra6z648nlVFPk9hLwRDmk0dOxRII3E-UFjAEeGo21E0tQYDWwSw7-yx2lMzptSOsyfP7_29YUI4yUaDVxd9CNeemHKeiAg/s1147/8.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="511" data-original-width="1147" height="143" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiR7wavYH2xisTTRaLEuEAyMssRxhmC3K0xObG4tOU8PbMp-1rJYXX3eVoAssvB1pSHMno9w2m4hlil7suUyruo41vhI2KMdra6z648nlVFPk9hLwRDmk0dOxRII3E-UFjAEeGo21E0tQYDWwSw7-yx2lMzptSOsyfP7_29YUI4yUaDVxd9CNeemHKeiAg/s320/8.png" width="320" /></a></div><div class="separator" style="clear: both; text-align: justify;"><br /></div><p style="clear: both; text-align: left;"><span style="font-family: arial; font-size: medium;">A payload named ‘shell_reverse_tcp’ was configured to aid the exploit. To determine what additional information required by this module, a command ‘options’ was passed and this showed that the module required a remote host to be set before the module can be exploited.</span></p><div class="separator" style="clear: both; text-align: justify;"><br /></div><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-T4k11ZPEXN-4AwaFEQQyeMHrMMg4vxTtp9dJsyEVYF9Uk2Z2AeR57Uawbx6IEkUhyphenhyphenHoa_B1EDtaue5wS6XdjtyC4gsDlQxM8FTjz9rZ-g3t3CiA3tzGg9YKWF22tONVFijLShXLbw6Nsgt0qkzUkFQr_iX5R2BI6iqk6Ftft3X0abquWx2QKF4MVeaE/s1141/9.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="670" data-original-width="1141" height="188" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-T4k11ZPEXN-4AwaFEQQyeMHrMMg4vxTtp9dJsyEVYF9Uk2Z2AeR57Uawbx6IEkUhyphenhyphenHoa_B1EDtaue5wS6XdjtyC4gsDlQxM8FTjz9rZ-g3t3CiA3tzGg9YKWF22tONVFijLShXLbw6Nsgt0qkzUkFQr_iX5R2BI6iqk6Ftft3X0abquWx2QKF4MVeaE/s320/9.png" width="320" /></a></div>
+  
+  
+  
 
-						<!-- Post -->
-							<article class="post">
-								<header>
-									<div class="title">
-										<h2><a href="#">Magna sed adipiscing</a></h2>
-										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
-									</div>
-									<div class="meta">
-										<time class="published" datetime="2015-11-01">November 1, 2015</time>
-										<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
-									</div>
-								</header>
-								<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
-								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-								<p>Nunc quis dui scelerisque, scelerisque urna ut, dapibus orci. Sed vitae condimentum lectus, ut imperdiet quam. Maecenas in justo ut nulla aliquam sodales vel at ligula. Sed blandit diam odio, sed fringilla lectus molestie sit amet. Praesent eu tortor viverra lorem mattis pulvinar feugiat in turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce ullamcorper tellus sit amet mattis dignissim. Phasellus ut metus ligula. Curabitur nec leo turpis. Ut gravida purus quis erat pretium, sed pellentesque massa elementum. Fusce vestibulum porta augue, at mattis justo. Integer sed sapien fringilla, dapibus risus id, faucibus ante. Pellentesque mattis nunc sit amet tortor pellentesque, non placerat neque viverra. </p>
-								<footer>
-									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon solid fa-heart">28</a></li>
-										<li><a href="#" class="icon solid fa-comment">128</a></li>
-									</ul>
-								</footer>
-							</article>
 
-					</div>
+<p><span style="font-family: arial; font-size: medium;">Outcome: Shell sessions were opened after the command ‘exploit’ was issued.</span></p><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjV3q9ZEgXvBaSC22zJ05WlLRjrMzmT2ccdpyvU-DqMyDSOqsTQHpwvhhoyMrwcZZBDK9uby0gw2545ImD4gqLRRldRFvs1_ygLJ7yWRTnsVoh-SeMRHTJC0bSOv4ndMVoRF8-_fj9rpD4iWnJFga2Wd0vmOlux5ki6paU8-o4B18Ipmfwy_3Pt2bw-ws/s1141/10.png" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img border="0" data-original-height="477" data-original-width="1141" height="134" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjV3q9ZEgXvBaSC22zJ05WlLRjrMzmT2ccdpyvU-DqMyDSOqsTQHpwvhhoyMrwcZZBDK9uby0gw2545ImD4gqLRRldRFvs1_ygLJ7yWRTnsVoh-SeMRHTJC0bSOv4ndMVoRF8-_fj9rpD4iWnJFga2Wd0vmOlux5ki6paU8-o4B18Ipmfwy_3Pt2bw-ws/w320-h134/10.png" width="320" /></a></div><p></p><h4><strong><span style="font-family: arial; font-size: medium;">Assessing the shell session</span></strong></h4><p>
+  
+  
+  
 
-				<!-- Footer -->
-					<section id="footer">
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
-							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
-						<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
-					</section>
 
-			</div>
+</p><p style="text-align: left;"><span style="font-family: arial; font-size: medium;">The command ‘whoami’ showed that the access gained was that of a <strong>root user	</strong>; that is to say that the objective of this assessment has been achieved. To further acquire more information from this system, the command ‘/bin/bash -i’ was passed to get an active&nbsp;<strong>bash shell</strong>.&nbsp;</span></p><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRjFd0LgXPDeWZioCFt6qy5qK5-XfoWUmRKa9pN1CN0wUxvZlSKg7-FvNBvqOhsRmMEtlD5mOF1EyYfYE3tPxNmbhbKLRRHOPEnrnQ5xm0P_ixaxcnIff-xtIqvxr17PZcEIyoC86Z9GR2X9a6BiNXY_ynUle2bzkxgHhkjMidTc35fUk1kp59CvWiN-Q/s1141/11.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="525" data-original-width="1141" height="147" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRjFd0LgXPDeWZioCFt6qy5qK5-XfoWUmRKa9pN1CN0wUxvZlSKg7-FvNBvqOhsRmMEtlD5mOF1EyYfYE3tPxNmbhbKLRRHOPEnrnQ5xm0P_ixaxcnIff-xtIqvxr17PZcEIyoC86Z9GR2X9a6BiNXY_ynUle2bzkxgHhkjMidTc35fUk1kp59CvWiN-Q/s320/11.png" width="320" /></a></div><div class="separator" style="clear: both; text-align: center;"><br /></div><div class="separator" style="clear: both; text-align: justify;">
+  
+  
+  
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
 
-	</body>
-</html>
+<p style="text-align: left;"><span style="font-family: arial; font-size: medium;">Looking at the result from the list of previously entered command, the ‘mail' command seems like an interesting command. Which when executed, provided a list of two mails that can be accessed by issuing their unique ID. The first mail was a congratulations mail🙌...</span></p></div><p></p><p></p><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQ9Fuy8cmnHRZPY_FwI7U4WDueso8rjWBL1zf1jEQzzlMq2aN4xJ9tOuNUL-0nGADc8J6jnPwHfWonPd_tlbMotSh22wq-0OJ09JWhjcSBpR2B8oc39Q3nPigsrpPDj6fIuTeGwDwbQWmEeJm5XEjQHxuOiUU6Pa5c6fCVwrNLOOEtEke6TRjKEF1TJxE/s804/12.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="592" data-original-width="804" height="236" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQ9Fuy8cmnHRZPY_FwI7U4WDueso8rjWBL1zf1jEQzzlMq2aN4xJ9tOuNUL-0nGADc8J6jnPwHfWonPd_tlbMotSh22wq-0OJ09JWhjcSBpR2B8oc39Q3nPigsrpPDj6fIuTeGwDwbQWmEeJm5XEjQHxuOiUU6Pa5c6fCVwrNLOOEtEke6TRjKEF1TJxE/w320-h236/12.png" width="320" /></a></div><br /><p></p><h3><span style="font-family: arial; font-size: x-large;">Recommendations</span></h3><p><span style="font-family: arial; font-size: medium;">The following recommendations can help mitigate the SMB vulnerability exploited in this report:</span></p><div class="separator" style="clear: both; text-align: justify;">
+  
+  
+  
+
+
+<p></p><p></p><ol><li><span style="font-family: arial; font-size: medium;">Regularly patch and update all systems running SMB services.</span></li><li><span style="font-family: arial; font-size: medium;">Implement a robust firewall configuration to restrict access to SMB ports. Only allow necessary traffic to and from trusted sources.</span></li><li><span style="font-family: arial; font-size: medium;">Use strong authentication methods for SMB or implement multi-factor authentication (MFA).</span></li><li><span style="font-family: arial; font-size: medium;">Set up comprehensive logging and monitoring of SMB traffic to help identify and detect any suspicious activities.</span></li><li><span style="font-family: arial; font-size: medium;">Train users and employees about the risks associated with SMB as human errors can often be a significant factor in security breaches</span></li><li><span style="font-family: arial; font-size: medium;">Disable all older SMB protocols (SMB1 and SMB2)which have known security issues and then stick to more secure versions like SMB3.</span></li></ol><h3 style="clear: both; text-align: left;"><span style="font-family: arial;"><span style="font-size: x-large;">Conclusion</span></span></h3><p style="text-align: left;"><span style="font-family: arial; font-size: medium;">We hope that this blog post has provided you with valuable information and insights into the exploitation of the SMB service buffer overflow vulnerability present in the Kioptrix VM as well as recommendations on how to mitigate this vulnerability on any system running SMB. If you have any questions or comments, please feel free to leave them below. We would be happy to answer any questions you may have.</span></p><p style="text-align: left;"></p><p style="text-align: left;"><span style="font-family: arial; font-size: medium;">Lastly, we encourage you to share this blog post with others who may find it helpful. If you found this post informative and useful, please spread the word and help us reach a wider audience. Thank you for reading and we look forward to hearing from you!</span></p><div><span style="font-family: arial; font-size: medium;"><br /></span></div></div><br /><p></p></div><p></p><strong></strong><p></p>
