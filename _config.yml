@@ -1,5 +1,5 @@
 title: KennedyEmeanuri1
 #logo:
-#description
-show_Downloads: true
+description: welcome 
+show_Downloads: false
 theme: jekyll-theme-minimal
